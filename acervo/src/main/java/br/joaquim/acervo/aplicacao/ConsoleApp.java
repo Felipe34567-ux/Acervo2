@@ -1,5 +1,7 @@
+//Felipe Ferreira Melantonio RA:10443843
 package br.joaquim.acervo.aplicacao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +28,10 @@ public class ConsoleApp {
 		
 
         Biblioteca b = new Biblioteca(1, "Jocas", null);
+        Biblioteca c = new Biblioteca(3,"felipe", new ArrayList<>());
         b = biblRepository.save(b);
+        c = biblRepository.save(c);
+
 
         Livro l1 = new Livro(1, "A volta dos que não foram", "desconhecido", 2025, "Mundo da Lua", b);
         Livro l2 = new Livro(2, "A ida dos que não vieram", "desconhecido", 2024, "Mundo da Lua", b);
@@ -34,19 +39,13 @@ public class ConsoleApp {
         livroRepository.save(l1);
         livroRepository.save(l2);
 
-        Optional<Biblioteca> resp = biblRepository.findById(1l);
-        if(resp.isPresent()) {
-            b = resp.get();
-        }
-        b.getLivros().add(l1);
-        b.getLivros().add(l2);
 
         
 
         
 
         List<Biblioteca> resposta = biblRepository.findAll();
-        // List<Livro> livros = livroRepository.findAll();
+
 		System.out.println("======= Bibliotecas =======");
 		for(Biblioteca biblioteca: resposta) {
             System.out.println("///// " + biblioteca.getNome() + " //////");
@@ -58,4 +57,5 @@ public class ConsoleApp {
         }
 		System.out.println("===========================");
     }
+
 }
